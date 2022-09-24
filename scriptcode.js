@@ -136,5 +136,89 @@ function getNextPalindrome(date)
     return[ctr,nextDate];
 }
 console.log(getNextPalindrome(date));
+function getPreviousDate(date) {
+    var day = date.day - 1;
+    var month = date.month;
+    var year = date.year;
+    var daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    if (month === 3) {
+        if (isLeapYear(year)) {
+            if (day < 1) {
+                day = 29;
+                month--;
+            }
+        } else {
+            if (day < 1) {
+                day = 28;
+                month--;
+            }
+        }
+    } else {
+        if (day < 1) {
+            day = daysInMonth[month - 2];
+            month--;
+        }
+    }
+    if (month < 1) {
+        day = 31;
+        month = 12;
+        year--;
+    }
+    return {
+        day: day,
+        month: month,
+        year: year
+    }
+
+}
+
+function previousPalindromeDate(date) {
+    var count = 0;
+    var previousDate = getPreviousDate(date);
+    while (1) {
+        count++;
+        var checkPalindrome = checkPalindromeForAllDateFormats(previousDate);
+        if (checkPalindrome) {
+            break;
+        }
+        previousDate = getPreviousDate(previousDate);
+    }
+    return [count, previousDate];
+}
+
+function nearestPalindrome(date) {
+    var [nextctr, nextDate] = nextPalindromeDate(date);
+    var [previousctr, previousDate] = previousPalindromeDate(date);
+    if (nextctr < previousctr) {
+        return [nextctr, nextDate];
+    } else {
+        return [previousctr, previousDate];
+    }
+}
+
+var inputDate = document.querySelector('#input-date');
+var checkBtn = document.querySelector('#submit-btn');
+var outputTxt = document.querySelector('#output-txt');
+
+function clickHandler(e) {
+    var bdyStr = inputDate.value;
+    if (bdyStr !== '') {
+        var listOfDate = bdyStr.split('-');
+        var date = {
+            day: Number(listOfDate[2]),
+            month: Number(listOfDate[1]),
+            year: Number(listOfDate[0])
+        }
+        var isPalindrome = checkPalindromeForAllDateFormats(date);
+        if (isPalindrome) {
+            outputTxt.innerText = "YaY! Your birthday is a Palindrome.."
+        } else {
+            var [ctr, nearDate] = nearestPalindrome(date);
+            outputTxt.innerText = 'The nearest Palindrome is ' + nearDate.day + '-' + nearDate.month + '-' + nearDate.year + " and you missed it by " + ctr + " days";
+        }
+    }
+}
+
+checkBtn.addEventListener('click', clickHandler);
 
 
