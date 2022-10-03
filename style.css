@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200&family=Rubik+Dirt&display=swap');
+body{
+    background-color:#d9f99d;
+    font-family: 'Raleway', sans-serif;
+    font-weight: bolder;
+}
+h1{
+    text-align:center;
+    padding: 2rem;
+    font-size:3rem;
+    font-family: 'Rubik Dirt';
+}
+main{
+    align-items: center;
+    border-color: #3f6212;
+    border-style: inset;
+    max-width:max-content;
+    margin: auto;
+}
+div{
+    text-align: center;
+    padding:0.7rem; 
+    padding-bottom: 2rem;      
+}
+input{
+    display: block;
+    margin: auto;
+    width: 300px;
+    height: 45px;
+    border-radius: 10px;
+}
+label{
+    display: block;
+    margin: auto;
+    font-weight: bold;
+    font-style: oblique;
+    text-align: center;
+    padding: 1.5rem;
+}
+button{
+    background-color: #3f6212;
+    border-radius: 0.4rem;
+    display: block;
+    margin:auto;
+    padding:0.7rem;
+    color: whitesmoke;
+    width: 100px;
+    font-weight: bold;
+}
+.footer-container{
+    padding: 0.5rem 0.5rem;
+    text-align: center;
+}
+.footer-header{
+    padding: 0.5rem;
+}
+.list-item-inline
+{
+    display: inline;
+    padding: 0rem 0.5rem;       
+}
